@@ -1,4 +1,4 @@
-﻿@model EntradasMvc.Models.Cotizacion
+﻿@model EntradasMvc.ViewModels.ResultadoCotizacionViewModel
 
 @{
     ViewData["Title"] = "Resultado de la cotización";
@@ -6,48 +6,64 @@
 
 <h1>Resultado de la cotización</h1>
 
-<p>Cliente: <strong>@Model.Cliente</strong></p>
+<div class="card">
+    <div class="card-body">
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Concepto</th>
-            <th>Valor</th>
-        </tr>
-    </thead>
+        <h4>@Model.Evento</h4>
 
-    <tbody>
-        <tr>
-            <td>Cantidad de entradas</td>
-            <td>@Model.Cantidad</td>
-        </tr>
+        <p>
+            <strong>Fecha del evento:</strong>
+            @Model.FechaEvento.ToString("dd/MM/yyyy")
+        </p>
 
-        <tr>
-            <td>Precio unitario</td>
-            <td>Bs @Model.PrecioUnitario.ToString("F2")</td>
-        </tr>
+        <hr />
 
-        <tr>
-            <td>Subtotal</td>
-            <td>Bs @Model.Subtotal.ToString("F2")</td>
-        </tr>
+        <p>
+            <strong>Cliente:</strong>
+            @Model.Cotizacion.Cliente
+        </p>
 
-        <tr>
-            <td>Descuento</td>
-            <td>Bs @Model.Descuento.ToString("F2")</td>
-        </tr>
+        <p>
+            <strong>Tipo de entrada:</strong>
+            @Model.TipoEntrada
+        </p>
 
-        <tr>
-            <th>Total</th>
-            <td>
-                <strong>Bs @Model.Total.ToString("F2")</strong>
-            </td>
-        </tr>
-    </tbody>
-</table>
+        <p>
+            <strong>Cantidad de entradas:</strong>
+            @Model.Cotizacion.Cantidad
+        </p>
 
-<p>Esta cotización no registra una compra.</p>
+        <p>
+            <strong>Precio unitario:</strong>
+            Bs @Model.Cotizacion.PrecioUnitario.ToString("0.00")
+        </p>
 
-<a asp-controller="Entradas" asp-action="Index" class="btn btn-primary">
-    Nueva cotización
-</a>
+        <p>
+            <strong>Subtotal:</strong>
+            Bs @Model.Cotizacion.Subtotal.ToString("0.00")
+        </p>
+
+        <p>
+            <strong>Descuento:</strong>
+            Bs @Model.Cotizacion.Descuento.ToString("0.00")
+        </p>
+
+        <p>
+            <strong>Total:</strong>
+            Bs @Model.Cotizacion.Total.ToString("0.00")
+        </p>
+
+        <hr />
+
+        <div class="alert alert-success">
+            @Model.Mensaje
+        </div>
+
+        <a asp-controller="Entradas"
+           asp-action="Index"
+           class="btn btn-primary">
+            Nueva cotización
+        </a>
+
+    </div>
+</div>
